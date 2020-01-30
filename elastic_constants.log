@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.14159265-p3.8.2-u1.24-190131-2.6 (utf8.uptex) (TeX Live 2019) (preloaded format=uplatex 2019.5.6)  31 JAN 2020 00:48
+This is e-upTeX, Version 3.14159265-p3.8.2-u1.24-190131-2.6 (utf8.uptex) (TeX Live 2019) (preloaded format=uplatex 2019.5.6)  31 JAN 2020 02:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -403,7 +403,7 @@ LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <5.5> not available
 [1
 
 ] [2] [3] [4]
-Overfull \hbox (23.1843pt too wide) detected at line 205
+Overfull \hbox (23.1843pt too wide) detected at line 213
 []
  []
 
@@ -427,10 +427,10 @@ LaTeX Font Warning: Size substitutions with differences
 Here is how much of TeX's memory you used:
  3509 strings out of 493212
  42263 string characters out of 6144393
- 129125 words of memory out of 5000000
+ 131125 words of memory out of 5000000
  7418 multiletter control sequences out of 15000+600000
  23907 words of font info for 93 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  27i,14n,27p,1013b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on elastic_constants.dvi (7 pages, 39540 bytes).
+Output written on elastic_constants.dvi (7 pages, 41108 bytes).

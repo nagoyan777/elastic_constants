@@ -61,7 +61,7 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
     \end{pmatrix} \\
 \end{align}
 \begin{align}
-    {\rm H^{^1} H} &=\frac{1}{2\pi} 
+    {\rm H^{-1} H} &=\frac{1}{2\pi} 
     \begin{pmatrix} 
         b_{11} & b_{12} & b_{13} \\
         b_{21} & b_{22} & b_{23} \\
@@ -92,12 +92,12 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
     \begin{pmatrix}
         s_{1} \\ s_{2} \\ s_{3} 
     \end{pmatrix} \\
-    \bm{p} &= ({\rm H}^{-1})^{T} \bm{p} 
+    \bm{p} &= ({\rm H}^{-1})^{T} \bm{\tilde{p}} 
 \end{align}  
 
 \begin{align}
     \bm{s} &= {\rm H}^{-1} \bm{q}\\
-    \bm{q} &= {\rm H}^{T} \bm{p}
+    \bm{\tilde{p}} &= {\rm H}^{T} \bm{p}
 \end{align}
 
 
@@ -113,15 +113,14 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
 \end{align}
 \begin{align}
     \frac{\partial q_{i \alpha}}{\partial H_{\beta \gamma}} 
-    &= \frac{\partial}{\partial a_{\beta \gamma}} \left(\sum_{\sigma} s_{\sigma} \bf{a}_{\sigma} \right)_{\alpha}\\
-    &= \frac{\partial}{\partial a_{\beta \gamma}} \sum_{\sigma} a_{\sigma \alpha} s_{\sigma} \\
-    &= \sum_{\sigma} \delta_{\beta \sigma} \delta_{\gamma \alpha} s_{\sigma} \\
-    &= \delta_{\alpha \gamma} s_{\beta} \\
-    &= \delta_{\alpha \gamma} ({\rm H}^{-1} \bm{q})_{\beta} \\
-    &= \delta_{\alpha \gamma} \sum_{\sigma} {\rm H}^{-1}_{\beta \sigma} \bm{q}_{\sigma}
+    &= \frac{\partial}{\partial H_{\beta \gamma}} \sum_{\sigma} H_{\alpha \sigma} \bf{s}_{\sigma} \\
+    &= \sum_{\sigma} \delta_{\alpha \beta} \delta_{\sigma \gamma} s_{\sigma} \\
+    &= \delta_{\alpha \beta} s_{\gamma} \\
+    &= \delta_{\alpha \beta} ({\rm H}^{-1} \bm{q})_{\gamma} \\
+    &= \delta_{\alpha \beta} \sum_{\sigma} {\rm H}^{-1}_{\gamma \sigma} \bm{q}_{\sigma}
 \end{align}
 \begin{align}
-    \frac{\partial }{\partial H_{\beta \gamma}} \tilde{ p}_{i \alpha} 
+    \frac{\partial \tilde{ p}_{i \alpha} }{\partial H_{\beta \gamma}} 
     &= \frac{\partial }{\partial H_{\beta \gamma}} \left({\rm H}^{T} \bf{p}_{i}\right)_{\alpha} \\
     0 &= \frac{\partial }{\partial H_{\beta \gamma}} \sum_{\sigma} H^{T}_{\alpha \sigma} p_{i \sigma}\\
     &= \sum_{\sigma} \left( \frac{\partial H_{\sigma \alpha} }{\partial H_{\beta \gamma}} p_{i \sigma}  +  H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} \right) \\
@@ -141,31 +140,40 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
 \begin{align}
     \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial H_{\beta \gamma}}  &= \sum_{i, \alpha} \left\{ \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \alpha}} \frac{\partial q_{i \alpha}}{\partial H_{\beta \gamma}} 
     +  \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial p_{i \alpha}} \frac{\partial p_{i \alpha}}{\partial H_{\beta \gamma}} \right\} \\
-    &= \sum_{i} \left\{ \sum_{\alpha} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \alpha}} \left( \delta_{\alpha \gamma} \sum_{\sigma} {\rm H}^{-1}_{\beta \sigma} q_{i \sigma} \right) + \sum_{\alpha} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial p_{i \alpha}} \left(-H_{\gamma \alpha}^{-1} p_{i\beta} \right) \right\} \\
-    &= \sum_{i} \left\{ \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \gamma}} \sum_{\sigma} {\rm H}^{-1}_{\beta \sigma} q_{i \sigma} 
+    &= \sum_{i} \left\{ \sum_{\alpha} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \alpha}} \left( \delta_{\alpha \beta} \sum_{\sigma} {\rm H}^{-1}_{\gamma \sigma} q_{i \sigma} \right) + \sum_{\alpha} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial p_{i \alpha}} \left(-H_{\gamma \alpha}^{-1} p_{i\beta} \right) \right\} \\
+    &= \sum_{i} \left\{ \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \beta}} \sum_{\sigma} {\rm H}^{-1}_{\gamma \sigma} q_{i \sigma} 
     -  p_{i\beta} \sum_{\alpha} H_{\gamma \alpha}^{-1} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial p_{i \alpha}} \right\} \\
-    &= \sum_{i} \left\{ \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \gamma}} \left({\rm H}^{-1} q_{i}\right)_{\beta}
-    -  p_{i \beta} \left( H^{-T} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\}
+    &= \sum_{i} \left\{ \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \beta}} \left({\rm H}^{-1} q_{i}\right)_{\gamma}
+    -  p_{i \beta} \left( H^{-1} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\}
+\end{align}
+\begin{align}
+    \frac{\partial A}{\partial {\rm H}} &= \sum_{i} \left\{
+    \frac{\partial A}{\partial \bm{q}_{i}} \otimes \left({\rm H}^{-1} \bm{q}_{i}\right)
+    -  \bm{p}_{i} \otimes \left( {\rm H^{-1}} \frac{\partial A}{\partial \bm{p}_{i}}  \right) 
+    \right\}
 \end{align}
 
 \begin{align}
-    \frac{\partial {\cal H}}{\partial q_{i \alpha}} &= \frac{\partial}{\partial q_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) \\
-    &= \frac{\partial}{\partial q_{i \alpha}} V \left(\{\bm{q}_{j}\}\right) \\
-    &:= V_{i \alpha} \\
-    \frac{\partial {\cal H}}{\partial p_{i \alpha}} &= \frac{\partial}{\partial p_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) \\
-    &= \frac{p_{i \alpha}}{m_{i}}
+    \frac{\partial {\cal H}}{\partial q_{i \alpha}} &= \frac{\partial}{\partial q_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) 
+    = \frac{\partial}{\partial q_{i \alpha}} V \left(\{\bm{q}_{j}\}\right) 
+    := V_{i \alpha} \\
+    \frac{\partial {\cal H}}{\partial p_{i \alpha}} &= \frac{\partial}{\partial p_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) 
+    = \frac{p_{i \alpha}}{m_{i}}
 \end{align}
-
+\begin{align}
+    \frac{\partial {\cal H}}{\partial \bm{q}_{i}} &= \bm{V}_{i} ,  \ \ \ \  
+    \frac{\partial {\cal H}}{\partial \bm{p}_{i}} = \frac{\bm{p}_{i}}{m_{i}}
+\end{align}
 \begin{align}
     \frac{\partial {\cal H}}{\partial H_{\alpha \beta}} 
-    &= \sum_{i} \left\{ \frac{\partial {\cal H}}{\partial q_{i \beta}} \left({\rm H}^{-1} q_{i}\right)_{\alpha}
-    -  p_{i \alpha} \left( H^{-T} \frac{\partial {\cal H}}{\partial \bm{p}_{i}}  \right)_{\beta} \right\} \\
-    &= \sum_{i} \left\{ V_{i \beta} \left({\rm H}^{-1} q_{i}\right)_{\alpha}
-    -  p_{i \alpha} \left( H^{-T}\frac{\bm{p}_{i}}{m_{i}}  \right)_{\beta} \right\} \\
-    &= \sum_{i} \left\{ V_{i \beta} \left({\rm H}^{-1} q_{i}\right)_{\alpha}
-    -  p_{i \alpha} \left( \frac{\bm{p}_{i}}{m_{i}} H^{-1} \right)_{\beta} \right\}  \\
-    \frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i} \left\{ \left({\rm H}^{-1} \bm{q}_{i}\right) \otimes \bm{V}_{i} 
-    - \bm{p}_{i} \otimes \left( H^{-T}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
+    &= \sum_{i} \left\{ \frac{\partial {\cal H}}{\partial q_{i \alpha}} \left({\rm H}^{-1} q_{i}\right)_{\beta}
+    -  p_{i \alpha} \left( H^{-1} \frac{\partial {\cal H}}{\partial \bm{p}_{i}}  \right)_{\beta} \right\} \\
+    &= \sum_{i} \left\{ V_{i \alpha} \left({\rm H}^{-1} q_{i}\right)_{\beta}
+    -  p_{i \alpha} \left( H^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right)_{\beta} \right\} \\
+    &= \sum_{i} \left\{ V_{i \alpha} \left({\rm H}^{-1} q_{i}\right)_{\beta}
+    -  p_{i \alpha} \left( \frac{\bm{p}_{i}}{m_{i}} H^{-T} \right)_{\beta} \right\}  \\
+    \frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i}\left\{ \bm{V}_{i} \otimes   \left({\rm H}^{-1} \bm{q}_{i}\right) 
+    - \bm{p}_{i} \otimes \left( H^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
 \end{align}
 \begin{align}
     {\rm H^{T} H} &= {\rm H_{0}^{T}} ( 1 + 2 {\rm e}) {\rm H_{0} } \\
@@ -207,22 +215,21 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
 \begin{align}
     \frac{\rm dA}{\rm de} &= \frac{1}{2}\left({\rm H}_{0} {\rm H}^{-1} \frac{\partial A}{\partial {\rm H}} {\rm H}_{0}^{T} + {\rm H}_{0} \frac{\partial A}{\partial {\rm H^{T}}} {\rm H}^{-T}{\rm H}_{0}^{T}  \right) \\
     \frac{\partial A}{\partial e_{\alpha \sigma}} &= \frac{1}{2} \sum_{i} \sum_{\beta \gamma} \left( \left({\rm H}_{0} {\rm H}^{-1}\right)_{\alpha \beta}
-     \left\{ \frac{\partial {\rm A}}{\partial q_{i \gamma}} \left({\rm H}^{-1} q_{i}\right)_{\beta}    -  p_{i \beta} \left( H^{-T} \frac{\partial {\rm A}}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\} {\rm H}_{0 \gamma \sigma} ^{T}\right. \\
-    &+ \left. {\rm H}_{0 \alpha \beta}  \left\{ \frac{\partial {\rm A}}{\partial q_{i \beta}} \left({\rm H}^{-1} q_{i}\right)_{\gamma}  -  p_{i \gamma} \left( H^{-T} \frac{\partial {\rm A}}{\partial \bm{p}_{i}}  \right)_{\beta} \right\}   \left({\rm H}^{-T}{\rm H}_{0}^{T} \right)_{\gamma \sigma} \right) \\
+     \left\{ \frac{\partial {\rm A}}{\partial q_{i \beta}} \left({\rm H}^{-1} q_{i}\right)_{\gamma}    -  p_{i \beta} \left( H^{-1} \frac{\partial {\rm A}}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\} {\rm H}_{0 \gamma \sigma} ^{T}\right. \\
+    &+ \left. {\rm H}_{0 \alpha \beta}  \left\{ \left({\rm H}^{-1} q_{i}\right)_{\beta} \frac{\partial {\rm A}}{\partial q_{i \gamma}}  -  \left( H^{-1} \frac{\partial {\rm A}}{\partial \bm{p}_{i}}  \right)_{\beta} p_{i \gamma} \right\}   \left({\rm H}^{-T}{\rm H}_{0}^{T} \right)_{\gamma \sigma} \right) \\
 \end{align}
 
 
 \begin{align}
     \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial H_{\beta \gamma}} 
-    &= \sum_{i} \left\{ \left({\rm H}^{-1} q_{i}\right)_{\beta}\frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \gamma}} 
-    -  p_{i \beta} \left( H^{-T} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\} \\
+    &= \sum_{i} \left\{ \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial q_{i \beta}} \left({\rm H}^{-1} q_{i}\right)_{\gamma}
+    -  p_{i \beta} \left( H^{-1} \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\} \\
     \frac{\partial A}{\partial {\rm H}} &= \sum_{i} \left\{ 
-    \left({\rm H}^{-1} \bm{q}_{i} \right) \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
-    - \bm{p}_{i} \otimes \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right)
+    \frac{\partial A }{\partial \bm{q}_{i}} \otimes \left({\rm H}^{-1} \bm{q}_{i} \right) 
+   - \bm{p}_{i} \otimes \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right)
     \right\}\\
-    \frac{\partial A}{\partial {\rm H}^T} &= \sum_{i} \left\{ \frac{\partial A }{\partial \bm{q}_{i}} \otimes 
-    \left({\rm H}^{-1} \bm{q}_{i} \right) 
-    - \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right)\otimes \bm{p}_{i} 
+    \frac{\partial A}{\partial {\rm H}^T} &= \sum_{i} \left\{\left({\rm H}^{-1} \bm{q}_{i} \right)  \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
+    - \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right)\otimes \bm{p}_{i} 
     \right\}
 \end{align}
 \begin{align}
@@ -236,22 +243,27 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
     &= \left( a \otimes \left(C^{T} b \right)\right)_{ik}
 \end{align}
 \begin{align}
-    {\rm H}^{-1} \frac{\partial A}{\partial {\rm H}} + \frac{\partial A}{\partial {\rm H}^{T}}{\rm H}^{-T} &= {\rm H}^{-1} \sum_{i}\left\{ 
-        \left({\rm H}^{-1} \bm{q}_{i} \right) \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
-        - \bm{p}_{i} \otimes \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right)
-        \right\}\\
-         &+ \sum_{i}  \left\{ \frac{\partial A }{\partial \bm{q}_{i}} \otimes 
-        \left({\rm H}^{-1} \bm{q}_{i} \right) 
-        - \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right) \otimes \bm{p}_{i} \right\}{\rm H}^{-T}  \\
-    &= \sum_{i} \left\{ H^{-1} H^{-1} \bm{q}_{i} \otimes \frac{\partial A }{\partial \bm{q}_{i}} - H^{-1} \bm{p}_{i} \otimes \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right) \right. \\
-    &+ \left. \frac{\partial A }{\partial \bm{q}_{i}} \otimes 
-    \left({\rm H}^{-1} \bm{q}_{i} {\rm H}^{-T}  \right)  
-    - \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right) \otimes \bm{p}_{i} {\rm H}^{-T} \right\} \\
-    &= \sum_{i}  \left\{ \left( H^{-1} \bm{q}_{i} H^{-T}\right) \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
-    - \left( H^{-1} \bm{p}_{i} \right) \otimes \left( \frac{\partial A }{\partial \bm{p}_{i}} {\rm H}^{-1} \right)  \right. \\
-    &+ \left. \frac{\partial A }{\partial \bm{q}_{i}} \otimes 
-    \left({\rm H}^{-1}  \bm{q}_{i} {\rm H}^{-T} \right)  
-    - \left( {\rm H}^{-T} \frac{\partial A }{\partial \bm{p}_{i}} \right) \otimes\left( \bm{p}_{i} {\rm H}^{-T} \right) \right\}
+    {\rm H}^{-1} \frac{\partial A}{\partial {\rm H}} + \frac{\partial A}{\partial {\rm H}^{T}}{\rm H}^{-T} 
+    &= {\rm H}^{-1} \sum_{i}\left\{ 
+      \frac{\partial A }{\partial \bm{q}_{i}} \otimes \left({\rm H}^{-1} \bm{q}_{i} \right) 
+      - \bm{p}_{i} \otimes \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right)
+    \right\}\\
+    &+ \sum_{i}  \left\{ \left({\rm H}^{-1} \bm{q}_{i} \right) \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
+        - \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right) \otimes \bm{p}_{i} \right\}{\rm H}^{-T}  \\
+    &= \sum_{i} \left\{ H^{-1} \frac{\partial A }{\partial \bm{q}_{i}} \otimes H^{-1} \bm{q}_{i} - H^{-1} \bm{p}_{i} \otimes \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right) \right. \\
+    &+ \left. \left({\rm H}^{-1} \bm{q}_{i}\right) \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
+     {\rm H}^{-T}   
+    - \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right) \otimes \bm{p}_{i} {\rm H}^{-T} \right\} \\
+    &= \sum_{i}  \left\{ H^{-1} \frac{\partial A }{\partial \bm{q}_{i}} \otimes \left( \bm{q}_{i} H^{-T}\right) 
+    - \left( H^{-1} \bm{p}_{i} \right) \otimes \left( \frac{\partial A }{\partial \bm{p}_{i}} {\rm H}^{-T} \right)  \right. \\
+    &+ \left. \left({\rm H}^{-1} \bm{q}_{i} \right) \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
+    {\rm H}^{-T} 
+    - \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right) \otimes\left( \bm{p}_{i} {\rm H}^{-T} \right) \right\}\\
+    &= \sum_{i} {\rm H}^{-1}  \left\{ \frac{\partial A }{\partial \bm{q}_{i}} \otimes \bm{q}_{i}
+    + \bm{q}_{i} \otimes \frac{\partial A }{\partial \bm{q}_{i}} 
+    - \bm{p}_{i} \otimes \frac{\partial A }{\partial \bm{p}_{i}} 
+    - \frac{\partial A }{\partial \bm{p}_{i}} \otimes \bm{p}_{i} \right\}{\rm H}^{-T}\\
+    &:= {\rm H}^{-1} (\hat{D} A) {\rm H}^{-T} 
 \end{align}
 \begin{align}
 \frac{1}{Z}\frac{\partial Z}{\partial H_{\alpha \beta}} &= -\frac{1}{k_{B}T} \left< \frac{\partial {\cal H}}{\partial H_{\alpha \beta}}\right>
@@ -284,17 +296,19 @@ a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
     &= \frac{1}{2} k_{B} T Z^{-1} \left({\rm H_{0}H^{-1}}\frac{\partial Z}{\partial {\rm H}}{\rm H}_{0}^{T} + {\rm H_{0}}\frac{\partial Z}{\partial {\rm H}^T}{\rm H^{-T}}{\rm H_{0}^{T}}\right)_{\alpha \beta} \\ 
     &= \frac{1}{2} k_{B} T \left\{ {\rm H_{0}H^{-1}}\left(-\frac{1}{k_{B}T} \left< \frac{\partial {\cal H}}{\partial {\rm H}}\right> \right){\rm H}_{0}^{T}  
     + {\rm H_{0}} \left(-\frac{1}{k_{B}T} \left< \frac{\partial {\cal H}}{\partial {\rm H}^{T}}\right> \right){\rm H^{-T}}{\rm H_{0}^{T}}\right\}_{\alpha \beta} \\  
-    &= -\frac{1}{2} \sum_{i} \left\{ {\rm H_{0}H^{-1}}\left< \left({\rm H}^{-1} \bm{q}_{i}\right) \otimes \bm{V}_{i} - \bm{p}_{i} \otimes \left( {\rm H}^{-T}\frac{\bm{p}_{i}}{m_{i}}  \right)  \right> {\rm H}_{0}^{T} \right.\\
-    &+ \left. {\rm H_{0}} \left< \bm{V}_{i} \otimes \left({\rm H}^{-1} \bm{q}_{i}\right)
-    -  \left( {\rm H}^{-T}\frac{\bm{p}_{i}}{m_{i}}  \right) \otimes \bm{p}_{i} \right> {\rm H^{-T}}{\rm H_{0}^{T}}\right\}_{\alpha \beta} \\ 
-    &= -\frac{1}{2} \sum_{i} \left\{ {\rm H_{0}H^{-1}}{\rm H}^{-1} \left< \bm{q}_{i} \otimes \bm{V}_{i} \right> {\rm H}_{0}^{T} - {\rm H_{0} H^{-1}} \left<\bm{p}_{i} \otimes \frac{\bm{p}_{i}}{m_{i}}   \right> {\rm H}^{-1} {\rm H}_{0}^{T} \right.\\
-    &+ \left. {\rm H_{0}} \left< \bm{V}_{i} \otimes  \bm{q}_{i} \right> {\rm H}^{-T} {\rm H^{-T} H_{0}^{T}} 
-    -   {\rm H_{0} H}^{-T} \left< \frac{\bm{p}_{i}}{m_{i}} \otimes \bm{p}_{i} \right> {\rm H^{-T}}{\rm H_{0}^{T}}\right\}_{\alpha \beta} \\
+    &= -\frac{1}{2} \sum_{i} \left\{ {\rm H_{0}H^{-1}}\left< \bm{V}_{i}  \otimes \left({\rm H}^{-1} \bm{q}_{i}\right) - \bm{p}_{i} \otimes \left( {\rm H}^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right)  \right> {\rm H}_{0}^{T} \right.\\
+    &+ \left. {\rm H_{0}} \left< \left({\rm H}^{-1} \bm{q}_{i}\right) \otimes \bm{V}_{i}
+    -  \left( {\rm H}^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right) \otimes \bm{p}_{i} \right> {\rm H^{-T}}{\rm H_{0}^{T}}\right\}_{\alpha \beta} \\ 
+    &= -\frac{1}{2} \sum_{i} \left\{ {\rm H_{0}H^{-1}}\left< \bm{q}_{i} \otimes \bm{V}_{i} \right> {\rm H}^{-T} {\rm H}_{0}^{T} - {\rm H_{0} H^{-1}} \left<\bm{p}_{i} \otimes \frac{\bm{p}_{i}}{m_{i}}   \right> {\rm H}^{-T} {\rm H}_{0}^{T} \right.\\
+    &+ \left. {\rm H_{0}}{\rm H}^{-1}  \left< \bm{V}_{i} \otimes  \bm{q}_{i} \right> {\rm H^{-T} H_{0}^{T}} 
+    -   {\rm H_{0} H}^{-1} \left< \frac{\bm{p}_{i}}{m_{i}} \otimes \bm{p}_{i} \right> {\rm H^{-T}}{\rm H_{0}^{T}}\right\}_{\alpha \beta} \\
+    &= -\frac{1}{2} \sum_{i} {\rm H_{0}H^{-1}} \left\{ \left< \bm{q}_{i} \otimes \bm{V}_{i} \right>  + \left< \bm{V}_{i} \otimes  \bm{q}_{i} \right> - \left<\bm{p}_{i} \otimes \frac{\bm{p}_{i}}{m_{i}}   \right>  
+    -  \left< \frac{\bm{p}_{i}}{m_{i}} \otimes \bm{p}_{i} \right> \right\} {\rm H^{-T}}{\rm H_{0}^{T}} \\
     &= \Omega \left< t_{\alpha \beta} \right>
 \end{align}
 \begin{align}
-\frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i} \left\{ \left({\rm H}^{-1} \bm{q}_{i}\right) \otimes \bm{V}_{i} 
-- \bm{p}_{i} \otimes \left( {\rm H}^{-T}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
+\frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i} \left\{ \bm{V}_{i} \otimes \left({\rm H}^{-1} \bm{q}_{i}\right)
+- \bm{p}_{i} \otimes \left( {\rm H}^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
 \end{align}
 \begin{align}
     C_{\alpha \beta \gamma \sigma} = -\frac{\partial \left< t_{\alpha \beta} \right>}{\partial e_{\gamma \sigma}}
