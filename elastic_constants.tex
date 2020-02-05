@@ -24,9 +24,11 @@
 \begin{document}
 \section{はじめに}
 Lutskoによるストレスゆらぎと弾性定数の関係式の導出を示す\cite{Lutsko1989}。
-Lutsko以前に、Rayらによる導出がある。
-Rayらの導出ではハミルトニアンに圧力制御のピストンの運動エネルギー、及び、ポテンシャルが現れる。
-一方、これらはLuskoの導出には現れない。Luskoの導出のほうがわかりやすいためこちらに従う。
+Lutsko以前に、Rayらによる導出がある\cite{Ray1984,Ray1981,Ray1982}。
+%Rayらの導出ではハミルトニアンに圧力制御のピストンの運動エネルギー、及び、ポテンシャルが現れる。
+%一方、これらはLuskoの導出には現れない。Luskoの導出のほうがわかりやすいためこちらに従う。
+
+%=================================%
 \section{定義と関係式}
 系のハミルトニアンは粒子の運動エネルギーとポテンシャルの和で表される。
 \begin{align}
@@ -65,7 +67,7 @@ Rayらの導出ではハミルトニアンに圧力制御のピストンの運�
     \bm{p} &= ({\rm H}^{-1})^{T} \bm{\tilde{p}} 
 \end{align}  
 以下では、表記を簡単にするために逆行列の転置を${\rm H}^{-T}:=\left({\rm H}^{-1}\right)^{T}=\left({\rm H}^{T}\right)^{-1}$と表す。
-基準となる平衡状態の格子ベクトルを${\rm H}_{0}$として、応力により変形した格子ベクトルを${\rm H}={\rm H}_{0}+{\rm \delta H}$とする。これらを用いて歪みテンソル$e$を定義し、格子の変形を表す。
+基準となる平衡状態の格子ベクトルを${\rm H}_{0}$として、応力により変形した格子ベクトルを${\rm H}={\rm H}_{0}+{\rm \delta H}$とする。これらを用いて歪みテンソル$e$を定義し、格子${\rm H}$の変形を$e$を用いて表す。
 \begin{align}
     {\rm H} &= {\rm H_{0} + \delta H} \\
     {\rm H^{T} H} &= {\rm (H_{0} + \delta H)^{T} (H_{0} + \delta H)} \\
@@ -81,9 +83,14 @@ Rayらの導出ではハミルトニアンに圧力制御のピストンの運�
  t_{\alpha \beta} &= -\frac{\partial F}{\partial e_{\alpha \beta}}, \ \
  C_{\alpha \beta \gamma \sigma} = -\frac{\partial t_{\alpha \beta}}{e_{\gamma \beta}}
 \end{align}
-弾性定数$C_{\alpha \beta \gamma \sigma}$をストレスゆらぎで表すには、これらの微分の表式を求めれば良い。
-
-\section{微分の表式}
+弾性定数$C_{\alpha \beta \gamma \sigma}$をストレスゆらぎで表すには、これらの微分を求めれば良い。
+以下では、ベクトルや行列の成分の微分を、同じ形に並べた行列として扱う。
+\begin{align}
+    \left( \frac{\partial A}{\partial e} \right)_{\alpha \beta} &= \frac{\partial A}{e_{\alpha \beta}}
+\end{align}
+%=================================%
+\section{ひずみによる微分}
+\subsection{スカラー関数の微分の表式}
 任意のスカラー関数$A(\{\bm{q}_{i}, \bm{p}_{i}\})$の${\rm H}$、$e$についての微分の表式を求める。まず、変数$\bm{q}_{i}$、$\bm{p}_{i}$の微分を求める。
 \begin{align}
     \frac{\partial q_{i \alpha}}{\partial H_{\beta \gamma}} 
@@ -100,12 +107,12 @@ Rayらの導出ではハミルトニアンに圧力制御のピストンの運�
     &= \sum_{\sigma} \left( \frac{\partial H_{\sigma \alpha} }{\partial H_{\beta \gamma}} p_{i \sigma}  +  H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} \right) \\
     &= \sum_{\sigma} \left( \delta_{\sigma \beta} \delta_{\alpha \gamma} p_{i \sigma}  +  H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} \right) \\
     &= \delta_{\alpha \gamma} p_{i \beta} + \sum_{\sigma} H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}}\\
-    \sum_{\sigma} H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} &= - \delta_{\alpha \gamma} p_{i \beta} 
+    \sum_{\sigma} H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} &= - \delta_{\alpha \gamma} p_{i \beta} \\
     %frac{\partial }{\partial H_{\beta \gamma}} \left({\rm H}^{T} \bf{p}_{i}\right)_{\alpha} 
-    \\
     \sum_{\alpha} H^{-1}_{\alpha \tau} \sum_{\sigma} H_{\sigma \alpha} \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} &= - \sum_{\alpha} H^{-1}_{\alpha \tau}  \delta_{\alpha \gamma} p_{i \beta}  
     % + \sum_{\alpha} H^{-1}_{\alpha \tau} \frac{\partial }{\partial H_{\beta \gamma}} \left({\rm H}^{T} \bf{p}_{i}\right)_{\alpha} 
-    \\
+\end{align}
+\begin{align}
     \sum_{\sigma} \left( H H^{-1} \right)_{\sigma \tau}  \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} &= - H^{-1}_{\gamma \tau} p_{i \beta}  \\% + \sum_{\alpha} H^{-1}_{\alpha \tau} \frac{\partial }{\partial H_{\beta \gamma}} \left({\rm H}^{T} \bf{p}_{i}\right)_{\alpha} \\
     \sum_{\sigma} \delta_{\sigma \tau}  \frac{\partial  p_{i \sigma}}{\partial H_{\beta \gamma}} &= - H^{-1}_{\gamma \tau} p_{i \beta}  \\% + \sum_{\alpha} H^{-1}_{\alpha \tau} \frac{\partial }{\partial H_{\beta \gamma}} \left({\rm H}^{T} \bf{p}_{i}\right)_{\alpha} \\
     \frac{\partial  p_{i \tau}}{\partial H_{\beta \gamma}} &= - H^{-1}_{\gamma \tau} p_{i \beta}  % + \sum_{\alpha} H^{-1}_{\alpha \tau} \frac{\partial }{\partial H_{\beta \gamma}} \left({\rm H}^{T} \bf{p}_{i}\right)_{\alpha}  \\
@@ -145,9 +152,9 @@ ${\rm H}$の各成分での微分を行列として表すと次式となる。
 ここで、$de$は対称行列で表され、独立な成分は6個である。
 対称行列で表される歪みテンソル$e$に対して、反対称テンソル${\rm dw}$を定義する。
 \begin{align}
-    {\rm dw} &:= \frac{1}{2} {\rm H_{0}}^{-T} ( {\rm  dH^{T} H - H^{T} dH } ) {\rm H_{0}^{-1}} \\
+    {\rm dw} &:= \frac{1}{2} {\rm H_{0}}^{-T} ( {\rm  dH^{T} H - H^{T} dH } ) {\rm H_{0}^{-1}} 
 \end{align}
-${\rm dw}$の独立な成分は3個である。したがって、$de$と$dw$とから、${\rm H}$と同様に９つの独立な変数が得られる。
+${\rm dw}$の独立な成分は3個である。$de$と$dw$とから、${\rm H}$と同様に９つの独立な変数が得られる。
 \begin{align}
     {\rm de + dw} &= {\rm H_{0}}^{-T} {\rm dH^{T} H  H_{0}^{-1} } \\
     {\rm de - dw} &= {\rm H_{0}}^{-T} {\rm H^{T} dH  H_{0}^{-1} } \\
@@ -181,28 +188,6 @@ $A$の歪みに対する微分を求める。
      + \frac{1}{2}\left({\rm H}_{0} {\rm H}^{-1} \frac{\partial A}{\partial {\rm H}} {\rm H}_{0}^{T} - {\rm H}_{0} \frac{\partial A}{\partial {\rm H^{T}}} {\rm H}^{-T}{\rm H}_{0}^{T}  \right)_{\alpha \beta} {\rm dw}_{\alpha \beta} 
      \right)
 \end{align}
-\begin{align}
-    \frac{\partial {\cal H}}{\partial q_{i \alpha}} &= \frac{\partial}{\partial q_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) 
-    = \frac{\partial}{\partial q_{i \alpha}} V \left(\{\bm{q}_{j}\}\right) 
-    := V_{i \alpha} \\
-    \frac{\partial {\cal H}}{\partial p_{i \alpha}} &= \frac{\partial}{\partial p_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) 
-    = \frac{p_{i \alpha}}{m_{i}}
-\end{align}
-\begin{align}
-    \frac{\partial {\cal H}}{\partial \bm{q}_{i}} &= \bm{V}_{i} ,  \ \ \ \  
-    \frac{\partial {\cal H}}{\partial \bm{p}_{i}} = \frac{\bm{p}_{i}}{m_{i}}
-\end{align}
-\begin{align}
-    \frac{\partial {\cal H}}{\partial H_{\alpha \beta}} 
-    &= \sum_{i} \left\{ \frac{\partial {\cal H}}{\partial q_{i \alpha}} \left({\rm H}^{-1} q_{i}\right)_{\beta}
-    -  p_{i \alpha} \left( H^{-1} \frac{\partial {\cal H}}{\partial \bm{p}_{i}}  \right)_{\beta} \right\} \\
-    &= \sum_{i} \left\{ V_{i \alpha} \left({\rm H}^{-1} q_{i}\right)_{\beta}
-    -  p_{i \alpha} \left( H^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right)_{\beta} \right\} \\
-    &= \sum_{i} \left\{ V_{i \alpha} \left({\rm H}^{-1} q_{i}\right)_{\beta}
-    -  p_{i \alpha} \left( \frac{\bm{p}_{i}}{m_{i}} H^{-T} \right)_{\beta} \right\}  \\
-    \frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i}\left\{ \bm{V}_{i} \otimes   \left({\rm H}^{-1} \bm{q}_{i}\right) 
-    - \bm{p}_{i} \otimes \left( H^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
-\end{align}
 
 \begin{align}
     \frac{\rm dA}{\rm de} &= \frac{1}{2}\left({\rm H}_{0} {\rm H}^{-1} \frac{\partial A}{\partial {\rm H}} {\rm H}_{0}^{T} + {\rm H}_{0} \frac{\partial A}{\partial {\rm H^{T}}} {\rm H}^{-T}{\rm H}_{0}^{T}  \right) \\
@@ -210,7 +195,6 @@ $A$の歪みに対する微分を求める。
      \left\{ \frac{\partial {\rm A}}{\partial q_{i \beta}} \left({\rm H}^{-1} q_{i}\right)_{\gamma}    -  p_{i \beta} \left( H^{-1} \frac{\partial {\rm A}}{\partial \bm{p}_{i}}  \right)_{\gamma} \right\} {\rm H}_{0 \gamma \sigma} ^{T}\right. \\
     &+ \left. {\rm H}_{0 \alpha \beta}  \left\{ \left({\rm H}^{-1} q_{i}\right)_{\beta} \frac{\partial {\rm A}}{\partial q_{i \gamma}}  -  \left( H^{-1} \frac{\partial {\rm A}}{\partial \bm{p}_{i}}  \right)_{\beta} p_{i \gamma} \right\}   \left({\rm H}^{-T}{\rm H}_{0}^{T} \right)_{\gamma \sigma} \right) \\
 \end{align}
-
 
 \begin{align}
     \frac{\partial {\rm A}(\{\bm{q}_{i}, \bm{p}_{i}\})}{\partial H_{\beta \gamma}} 
@@ -224,16 +208,7 @@ $A$の歪みに対する微分を求める。
     - \left( {\rm H}^{-1} \frac{\partial A }{\partial \bm{p}_{i}} \right)\otimes \bm{p}_{i} 
     \right\}
 \end{align}
-\begin{align}
-    \left( A \left(b \otimes c\right) \right)_{ik} &= \sum_{j} A_{ij} b_{j} c_{k}  
-    = (Ab)_{i} c_{k} 
-    = (b A^{T})_{i} c_{k} \\
-    &= \left( (Ab) \otimes c \right)_{ik}\\
-    &= \left( (bA^{T}) \otimes c \right)_{ik}\\
-    \left( (a \otimes b) C\right)_{ik} &= \sum_{j} a_{i} b_{j} C_{jk} \\
-    &= \left( a \otimes \left(b C\right)\right)_{ik} \\
-    &= \left( a \otimes \left(C^{T} b \right)\right)_{ik}
-\end{align}
+
 \begin{align}
     {\rm H}^{-1} \frac{\partial A}{\partial {\rm H}} + \frac{\partial A}{\partial {\rm H}^{T}}{\rm H}^{-T} 
     &= {\rm H}^{-1} \sum_{i}\left\{ 
@@ -257,9 +232,43 @@ $A$の歪みに対する微分を求める。
     - \frac{\partial A }{\partial \bm{p}_{i}} \otimes \bm{p}_{i} \right\}{\rm H}^{-T}\\
     &:= {\rm H}^{-1} (\hat{D} A) {\rm H}^{-T} 
 \end{align}
+ここで、$\bm{p}$、$\bm{q}$による微分をまとめた演算子$\hat{D}$を定義した。
+これで、スカラー関数$A$の歪み$e$による微分が得られた。
+
+%=================================%
+\subsection{ハミルトニアンの微分}
+ハミルトニアン${\cal H}$の$\bm{q}$、$\bm{p}$、${\rm H}$による微分は上式の$A$に${\rm H}$を入れて求められる。
 \begin{align}
+    \frac{\partial {\cal H}}{\partial q_{i \alpha}} &= \frac{\partial}{\partial q_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) 
+    = \frac{\partial}{\partial q_{i \alpha}} V \left(\{\bm{q}_{j}\}\right) 
+    := V_{i \alpha} \\
+    \frac{\partial {\cal H}}{\partial p_{i \alpha}} &= \frac{\partial}{\partial p_{i \alpha}} \left( \sum_{j} \sum_{\beta}\frac{p_{j \beta}^{2}}{2m_{j}} + V \left(\{\bm{q}_{j}\}\right)\right) 
+    = \frac{p_{i \alpha}}{m_{i}}
+\end{align}
+\begin{align}
+    \frac{\partial {\cal H}}{\partial \bm{q}_{i}} &= \bm{V}_{i} ,  \ \ \ \  
+    \frac{\partial {\cal H}}{\partial \bm{p}_{i}} = \frac{\bm{p}_{i}}{m_{i}}
+\end{align}
+\begin{align}
+    \frac{\partial {\cal H}}{\partial H_{\alpha \beta}} 
+    &= \sum_{i} \left\{ \frac{\partial {\cal H}}{\partial q_{i \alpha}} \left({\rm H}^{-1} q_{i}\right)_{\beta}
+    -  p_{i \alpha} \left( H^{-1} \frac{\partial {\cal H}}{\partial \bm{p}_{i}}  \right)_{\beta} \right\} \\
+    &= \sum_{i} \left\{ V_{i \alpha} \left({\rm H}^{-1} q_{i}\right)_{\beta}
+    -  p_{i \alpha} \left( H^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right)_{\beta} \right\} \\
+    &= \sum_{i} \left\{ V_{i \alpha} \left({\rm H}^{-1} q_{i}\right)_{\beta}
+    -  p_{i \alpha} \left( \frac{\bm{p}_{i}}{m_{i}} H^{-T} \right)_{\beta} \right\}  \\
+    \frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i}\left\{ \bm{V}_{i} \otimes   \left({\rm H}^{-1} \bm{q}_{i}\right) 
+    - \bm{p}_{i} \otimes \left( H^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
+\end{align}
+
+%=================================%
+\subsection{期待値の微分}
+分配関数$Z$の微分は以下となる。
+\begin{align}
+Z &= \int d\bm{q}^{3N} d\bm{p}^{3N} \exp\left(-\frac{{\cal H}}{k_{B}T}\right) \\
 \frac{1}{Z}\frac{\partial Z}{\partial H_{\alpha \beta}} &= -\frac{1}{k_{B}T} \left< \frac{\partial {\cal H}}{\partial H_{\alpha \beta}}\right>
 \end{align}
+これを使って、関数$A$の期待値の${\rm H}$、$e$による微分を求める。
 \begin{align}
     \frac{\partial \langle A \rangle }{\partial H_{\alpha \beta}} &= \frac{\partial}{\partial H_{\alpha \beta}}\frac{1}{Z} \int d\bm{q} d\bm{p} A \exp(-{\cal H}/k_{B} T) \\
     &= -\frac{1}{Z^{2}} \frac{\partial Z}{\partial H_{\alpha \beta}} \int d\bm{q} d\bm{p} A \exp(-{\cal H}/k_{B} T)  
@@ -281,9 +290,13 @@ $A$の歪みに対する微分を求める。
     &= \frac{1}{2}{\rm H_{0}} \left[ {\rm H^{-1}} \left\{ \left< \frac{\partial A}{\partial {\rm H}}  \right> -\frac{1}{k_{B}T} \left(\left< A \frac{\partial {\cal H}}{\partial {\rm H}} \right>  + \left< \frac{\partial {\cal H}}{\partial {\rm H}}\right> \left< A \right> \right) \right \}\right. \\
     &+ \left. \left\{ \left< \frac{\partial A}{\partial {\rm H}^{T}}  \right> -\frac{1}{k_{B}T} \left(\left< A \frac{\partial {\cal H}}{\partial {\rm H}^{T}} \right>  + \left< \frac{\partial {\cal H}}{\partial {\rm H}^{T}}\right> \left< A \right> \right) \right\} {\rm H^{-T}}\right] {\rm H_{0}^{T}} \\ 
 \end{align}
+
+%=================================%
+\section{ストレステンソルの表式}
+ストレステンソルはHelmholtz自由エネルギーの歪み微分として定義される。
 \begin{align}
     F &= - k_{B} T  \ln Z \\
-    \Omega \, t_{\alpha \beta} &= - \Omega \frac{\partial F}{\partial e_{\alpha \beta}} \\
+    \Omega \, t_{\alpha \beta} &:= - \Omega \frac{\partial F}{\partial e_{\alpha \beta}} \\
     &= k_{B} T Z^{-1} \frac{\partial Z}{\partial e_{\alpha \beta}} \\
     &= \frac{1}{2} k_{B} T Z^{-1} \left({\rm H_{0}H^{-1}}\frac{\partial Z}{\partial {\rm H}}{\rm H}_{0}^{T} + {\rm H_{0}}\frac{\partial Z}{\partial {\rm H}^T}{\rm H^{-T}}{\rm H_{0}^{T}}\right)_{\alpha \beta} \\ 
     &= \frac{1}{2} k_{B} T \left\{ {\rm H_{0}H^{-1}}\left(-\frac{1}{k_{B}T} \left< \frac{\partial {\cal H}}{\partial {\rm H}}\right> \right){\rm H}_{0}^{T}  
@@ -299,10 +312,16 @@ $A$の歪みに対する微分を求める。
     &:= -\frac{1}{2} \left< \hat{D}' {\cal H} \right> \\
     &:= \Omega \left< t_{\alpha \beta} \right>
 \end{align}
+ここで、微視的なストレステンソル$\hat{t}$、$p$、$q$の微分を表す演算子$\hat{D}$を${\rm H_{0}H^{-1}}$、${\rm H^{-T} H_{0}^{T}}$を両側にかけた演算子$\hat{D}'$を定義した。
+
 \begin{align}
 \frac{\partial {\cal H}}{\partial {\rm H}} &= \sum_{i} \left\{ \bm{V}_{i} \otimes \left({\rm H}^{-1} \bm{q}_{i}\right)
 - \bm{p}_{i} \otimes \left( {\rm H}^{-1}\frac{\bm{p}_{i}}{m_{i}}  \right) \right\}     
 \end{align}
+
+%=================================%
+\section{弾性定数}
+弾性定数はストレステンソルの歪み微分として定義される。
 \begin{align}
     C_{\alpha \beta \gamma \sigma} &= -\frac{\partial \left< t_{\alpha \beta} \right>}{\partial e_{\gamma \sigma}}\\
     &= -\frac{\partial }{\partial e} \left( - \frac{1}{2 \Omega} \left< \hat{D}' {\cal H} \right> \right) \\
@@ -310,7 +329,12 @@ $A$の歪みに対する微分を求める。
         \left< \hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma} \right>
          - \left< \hat{t}_{\alpha \beta} \right> \left< \hat{t}_{\sigma \gamma} \right>
     \right) \\
-    &= \frac{1}{\Omega} \left< \hat{D}_{\gamma \sigma}' \left( \hat{D}_{\alpha \beta}' {\cal H} \right) \right> + \frac{2\Omega}{k_{B}T} \delta  \left(\hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma}\right)\\
+    &= \frac{1}{\Omega} \left< \hat{D}_{\gamma \sigma}' \left( \hat{D}_{\alpha \beta}' {\cal H} \right) \right> + \frac{2\Omega}{k_{B}T} \delta  \left(\hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma}\right)
+\end{align}
+ここで、$\delta(t_{\alpha \beta} t_{\gamma \sigma})$はストレスゆらぎを表す。
+したがって、弾性定数はストレスゆらぎと$\hat{D}'(\hat{D}'){\cal H}$から求められる。
+弾性定数は歪みがゼロの場合の微分なので、$e\rightarrow 0$の極限をとる。このとき、${\rm H_{0} H^{-1}} \rightarrow {\rm H_{0} H_{0}^{-1}}=I$となる。($I$は3 $\times$ 3の単位行列)
+\begin{align}
     \left. C_{\alpha \beta \gamma \sigma} \right|_{e=0} &= \frac{2\Omega}{k_{B} T} \delta_{\hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma}}
      + \frac{1}{\Omega} \hat{S}_{\alpha \beta \gamma \sigma} \left< 
     \sum_{i, j} q_{i \gamma} V_{j\alpha, i\sigma} q_{j \beta}
@@ -330,60 +354,179 @@ $A$の歪みに対する微分を求める。
           + \left< \sum_{i} q_{i \gamma} V_{i \alpha}\right> \delta_{\beta \sigma} 
           \right\} \\
 \end{align}
+ここで、運動量の項はガウス積分なので計算できて、自由度あたりのエネルギ-$k_{B}T$となっている。
 \begin{align}
     \left< \frac{1}{m_{i}} p_{i \gamma} p_{i \beta} \right> &= \frac{1}{m_{i}} \frac{1}{Z} \int d\bm{q}^{3N} d\bm{p}^{3N} p_{i \gamma} p_{i \beta} \exp\left(-\frac{1}{k_{B}T}\left( \sum_{j}\frac{p_{j}^{2}}{2m_{j}} + V\left(\left\{\bm{q_{j}}\right\}\right)\right) \right) \\
     &= \delta_{\gamma \beta} \frac{1}{m_{i}} \frac{\sqrt{\pi}/2 (2m_{i}k_{B}T)^{3/2}}{\sqrt{\pi} (2 m_{i}k_{B}T)^{1/2}}\\
     &= \delta_{\gamma \beta} k_{B} T
 \end{align}
-
-\section{Appendix}
-格子行列${\rm H}$の逆行列は逆格子ベクトルである。
+\section{弾性定数における微分の項の計算}
+弾性定数の中に現れる微分項を計算する。
 \begin{align}
-    \bm{a}_{i} \cdot \bm{b}_{j}&= \sum_{\alpha} a_{i \alpha} b_{j \alpha} = 2 \pi \delta_{ij} \\
-    a_{11} b_{12} + a_{21}  b_{22} + a_{31} b_{32} &=
-    a_{11} (a_{23}a_{31}-a_{21}a_{33}) + a_{21} (a_{33}a_{11}-a_{31}a_{13}) + a_{31}(a_{13}a_{21}-a_{11}a_{23})\\ 
-    &= 0\\
-    a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
-    \frac{a_{11} (a_{22}a_{33}-a_{23}a_{32}) + a_{21} (a_{32}a_{13}-a_{33}a_{12}) + a_{31}(a_{12}a_{23}-a_{13}a_{22})}{V/2\pi}\\ 
-    &= \frac{a_{11} (a_{22}a_{33}-a_{23}a_{32}) + a_{12} (a_{23}a_{31} -a_{21} a_{33}) + a_{13}(a_{21} a_{32} - a_{22}a_{31})}{V/2\pi}\\
-    &= \frac{\bf{a}_{1} \cdot \bf{a}_{2} \times \bf{a}_{3}}{V/2\pi}\\
-    &= 2\pi\\
-    \sum_{i} a_{i \alpha} b_{i \beta} &= a_{i \alpha} a_{i \gamma}\times a_{i \alpha} =2\pi \delta_{\alpha \beta} \\
-    \rm{b}_{1} &= 2\pi \frac{ \rm{a}_{2} \times \rm{a}_{3}}{V} 
-            = \frac{2\pi}{V} \begin{pmatrix} a_{22}a_{33} - a_{23}a_{32} \\ a_{23}a_{31} - a_{21}a_{33} \\ a_{21}a_{32} - a_{22}a_{31} \end{pmatrix} \\
-    \rm{b}_{2} &= 2\pi \frac{ \rm{a}_{3} \times \rm{a}_{1}}{V} \\
-    \rm{b}_{3} &= 2\pi \frac{ \rm{a}_{1} \times \rm{a}_{2}}{V} 
-    \end{align}
+    C_{\alpha \beta \gamma \sigma} &= -\frac{\partial \left< t_{\alpha \beta} \right>}{\partial e_{\gamma \sigma}} \\
+    &= - {\rm H_{0} H^{-1}} \left\{ \left<\hat{D}_{\gamma \sigma} t_{\alpha \beta} \right> - \frac{1}{k_{B}T} \left( \left<t_{\alpha \beta} \hat{D}_{\gamma \sigma} {\cal H}\right> - \left< t_{\alpha \beta} \right>\left< \hat{D}_{\gamma \sigma} {\cal H}\right>\right) \right\} \\
+    &= -\left< \hat{D}_{\gamma \sigma}' t_{\alpha \beta}\right> + \frac{2\Omega}{k_{B} T} \left(\left<t_{\alpha \beta} t_{\gamma \sigma}\right> - \left<t_{\alpha \beta}\right>\left<t_{\gamma \sigma}\right>\right)
+\end{align}
+
+\begin{align}
+    \hat{D}'{\cal H} &= {\rm H_{0} H^{-1}} (\hat{D}' {\cal H}) {\rm H^{-T} H_{0}^{T}} \\
+    \hat{D} {\cal H} &= \sum_{i} \left\{
+      \bm{q}_{i} \otimes \frac{\partial {\cal H}}{\partial \bm{q}_{i}} + \frac{\partial {\cal H}}{\partial \bm{q}_{i}} 
+      - \bm{p}_{i} \otimes \frac{\partial {\cal H}}{\partial \bm{p}_{i}} - \frac{\partial {\cal H}}{\partial \bm{p}_{i}} \otimes \bm{p}_{i}
+    \right\} \\
+    &= \sum_{i} \left\{ \bm{q}_{i} \otimes \bm{V}_{i} + \bm{V}_{i} \otimes \bm{q}_{i} - \frac{2}{m_{i}} \bm{p}_{i} \otimes \bm{p}_{i}  \right\} \\
+    &= \sum_{i} S \left\{ \bm{q}_{i} \otimes \bm{V}_{i} - \frac{1}{m_{i}} \bm{p}_{i} \otimes \bm{p}_{i}\right\}
+\end{align}
+ここで、座標の符号$\alpha$、$\beta$の置換について和をとる演算子$S_{\alpha\beta}$を定義する。
+\begin{align}
+  S_{\alpha \beta} E_{\alpha \beta} &= E_{\alpha \beta} + E_{\beta \alpha} 
+\end{align}
+また、$U:={\rm H_{0} H^{-1}}$、$U^{T}= {\rm H^{-T} H_{0}^T}$を定義する。
+\begin{align}
+    \hat{D} &= \sum_{i} S \left\{ \bm{q}_{i} \otimes \frac{\partial }{\partial \bm{q}_{i}} - \bm{p}_{i} \otimes \frac{\partial }{\partial \bm{p}_{i} } \right\}
+\end{align}
+\begin{align}
+    \hat{D}'(\hat{D}'{\cal H}) &= U \sum_{i} S \left\{ 
+        \bm{q}_{i} \otimes \frac{\partial }{\partial \bm{q}_{i}} - \bm{p}_{i} \otimes \frac{\partial }{\partial \bm{p}_{i} } 
+        \right\} 
+         \left( \tilde{U} \sum_{j} \tilde{S} \left\{
+    \bm{q}_{j} \tilde{\otimes} \bm{V}_{j} - \frac{1}{m}_{j} \bm{p}_{j} \tilde{\otimes} \bm{p}_{j}    
+    \right\} \tilde{U}^{T} \right)
+    U^{T}\\
+    &= \sum_{i} \sum_{j} U S \left[ 
+        \bm{q}_{i} \otimes \frac{\partial}{\partial \bm{q}_{i}} \left(
+        \tilde{U} \tilde{S} \bm{q}_{j} \tilde{\otimes} \bm{V}_{j} \tilde{U}^{T}
+         \right)
+         + \bm{p}_{i} \otimes \frac{\partial}{\partial \bm{p}_{i}} \left(\tilde{U} \tilde{S} \frac{1}{m_{j}}\bm{p}_{j} \tilde{\otimes} \bm{p}_{j} \tilde{U}^{T} \right)
+    \right] U^{T} \\
+    &= \sum_{i}\sum_{j} U S \left[
+        \bm{q}_{i} \otimes 
+            \tilde{U} \tilde{S}\left( \frac{\partial \bm{q}_{j}}{\partial \bm{q}_{i}} \tilde{\otimes} \bm{V}_{j} 
+            + \bm{q}_{j} \tilde{\otimes} {\rm V}_{i
+            j} \right) \tilde{U}^{T}
+            \right. \\
+     &+ \left. \bm{p}_{i} \otimes \frac{1}{m_{j}} \tilde{U} \tilde{S} \left( 
+         \frac{\partial \bm{p}_{j}} {\partial \bm{p}_{i}} \tilde{\otimes} \bm{p}_{j} 
+         + \bm{p}_{j}  \tilde{\otimes} \frac{\partial \bm{p}_{j} } {\partial \bm{p}_{i}}
+         \tilde{U}^{T} \right)
+        \right] U^{T} \\
+    &= \sum_{i}\sum_{j} U S \left[
+            \bm{q}_{i} \otimes 
+                \tilde{U} \left( \frac{\partial \bm{q}_{j}}{\partial \bm{q}_{i}} \tilde{\otimes} \bm{V}_{j} 
+                +  \bm{V}_{j} \tilde{\otimes}\frac{\partial \bm{q}_{j}}{\partial \bm{q}_{i}} 
+                + \bm{q}_{j} \tilde{\otimes} {\rm V}_{ij}
+                + {\rm V}_{ij}\tilde{\otimes} \bm{q}_{j} 
+                 \right) \tilde{U}^{T}
+                \right. \\
+    &+ \left. \bm{p}_{i} \otimes \frac{1}{m_{j}} \tilde{U}  \left( 
+             \frac{\partial \bm{p}_{j}} {\partial \bm{p}_{i}} \tilde{\otimes} \bm{p}_{j} 
+             + \bm{p}_{j}  \tilde{\otimes} \frac{\partial \bm{p}_{j}} {\partial \bm{p}_{i}}
+             + \bm{p}_{j}  \tilde{\otimes} \frac{\partial \bm{p}_{j} } {\partial \bm{p}_{i}}
+             + \frac{\partial \bm{p}_{j} } {\partial \bm{p}_{i}} \tilde{\otimes} \bm{p}_{j}
+              \right) \tilde{U}^{T}
+            \right] U^{T} \\
+    &= \sum_{i}\sum_{j} U S \left[
+                \bm{q}_{i} \otimes \left\{ 
+                     \left( \tilde{U} \frac{\partial \bm{q}_{j}}{\partial \bm{q}_{i}} \right) \tilde{\otimes} \left( \tilde{U} \bm{V}_{j} \right)
+                    + \left( \tilde{U}\bm{V}_{j} \right) \tilde{\otimes} \left( \tilde{U} \frac{\partial \bm{q}_{j}}{\partial \bm{q}_{i}} \right)
+                   \right. \right. \\
+    &+ \left. \left. 
+          \left( \tilde{U} \bm{q}_{j} \right) \tilde{\otimes} \left( \tilde{U} {\rm V}_{ij} \right) 
+        + \left( \tilde{U} {\rm V}_{ij} \right) \tilde{\otimes} \left( \tilde{U} \bm{q}_{j} \right) 
+       \right\} \right. \\
+    &+ \left. \bm{p}_{i} \otimes \frac{2}{m_{j}} \tilde{U}  \left( 
+                \frac{\partial \bm{p}_{j}} {\partial \bm{p}_{i}} \tilde{\otimes} \bm{p}_{j} 
+                + \bm{p}_{j}  \tilde{\otimes} \frac{\partial \bm{p}_{j}} {\partial \bm{p}_{i}}
+                 \right) \tilde{U}^{T}
+               \right] U^{T} \\
+ &= \sum_{i} \sum_{j} U S \tilde{S} \left[
+       \bm{q}_{i} \otimes \left(\tilde{U} \frac{\partial \bm{q}_{j}}{\partial \bm{q}_{i}}\right) \tilde{\otimes} \left( \tilde{U} \bm{V}_{j} \right) \right. \\
+      &+ \left. \bm{q}_{i} \otimes \left( \tilde{U} \bm{q}_{j} \right) \tilde{\otimes} \left( \tilde{U} {\rm V}_{ij} \right) \right. \\
+      &+ \left. \frac{2}{m_{j}} \bm{p}_{i} \otimes  \left(  \tilde{U} 
+        \frac{\partial \bm{p}_{j}} {\partial \bm{p}_{i}} \right) \tilde{\otimes} \left( \tilde{U} \bm{p}_{j} \right) 
+      \right] U^{T}
+\end{align}
+
+弾性定数は次式となる。
+\begin{align}
+    C_{\alpha \beta \gamma \sigma} &= \frac{2\Omega}{k_{B}T} \delta(\hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma}) 
+    +  \left.\frac{1}{\Omega} \left<\hat{D}_{\gamma \beta}'(\hat{D}_{\alpha \beta}' {\cal H})\right>\right|_{e=0}  \\
+    &= \frac{2\Omega}{k_{B}T} \delta(\hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma}) 
+    + \frac{1}{\Omega} S_{\gamma \sigma} S_{\alpha \beta} \left<
+    \sum_{i} \sum_{j} q_{i \gamma} q_{j \alpha} {\rm V}_{i\sigma j\beta}
+     + \delta_{\alpha \sigma}  \sum_{i} q_{i \gamma}V_{i \beta}
+      + \delta_{\sigma \alpha} \sum_{i} \frac{2}{m_{i}} p_{i \gamma} p_{i \beta}
+    \right> \\
+    &= \frac{2\Omega}{k_{B}T} \delta(\hat{t}_{\alpha \beta} \hat{t}_{\gamma \sigma}) 
+      + \frac{2 N k_{B} T}{\Omega} \left( \delta_{\sigma \alpha}  \delta_{\gamma \beta} + \delta_{\sigma \beta}  \delta_{\gamma \alpha} \right)
+      + \frac{1}{\Omega} S_{\gamma \sigma} S_{\alpha \beta} \left<
+    \sum_{i} \sum_{j} q_{i \gamma} q_{j \alpha} {\rm V}_{i\sigma, j\beta}
+     + \delta_{\alpha \sigma}  \sum_{i} q_{i \gamma}V_{i \beta}
+    \right>
+\end{align}
+
+%=================================%
+\section{Appendix}
+行列とテンソル積の積。
+\begin{align}
+    \left( A \left(b \otimes c\right) \right)_{ik} &= \sum_{j} A_{ij} b_{j} c_{k}  
+    = (Ab)_{i} c_{k} 
+    = (b A^{T})_{i} c_{k} \\
+    &= \left( (Ab) \otimes c \right)_{ik}\\
+    &= \left( (bA^{T}) \otimes c \right)_{ik}\\
+    \left( (a \otimes b) C\right)_{ik} &= \sum_{j} a_{i} b_{j} C_{jk} \\
+    &= \left( a \otimes \left(b C\right)\right)_{ik} \\
+    &= \left( a \otimes \left(C^{T} b \right)\right)_{ik}
+\end{align}
+
+格子行列${\rm H}$の逆行列は逆格子ベクトル。
+%\begin{align}
+%    \bm{a}_{i} \cdot \bm{b}_{j}&= \sum_{\alpha} a_{i \alpha} b_{j \alpha} = 2 \pi \delta_{ij} \\
+%    a_{11} b_{12} + a_{21}  b_{22} + a_{31} b_{32} &=
+%    a_{11} (a_{23}a_{31}-a_{21}a_{33}) + a_{21} (a_{33}a_{11}-a_{31}a_{13}) + a_{31}(a_{13}a_{21}-a_{11}a_{23})\\ 
+%    &= 0\\
+%    a_{11} b_{11} + a_{21}  b_{21} + a_{31} b_{31} &=
+%    \frac{a_{11} (a_{22}a_{33}-a_{23}a_{32}) + a_{21} (a_{32}a_{13}-a_{33}a_{12}) + a_{31}(a_{12}a_{23}-a_{13}a_{22})}{V/2\pi}\\ 
+%    &= \frac{a_{11} (a_{22}a_{33}-a_{23}a_{32}) + a_{12} (a_{23}a_{31} -a_{21} a_{33}) + a_{13}(a_{21} a_{32} - a_{22}a_{31})}{V/2\pi}\\
+%    &= \frac{\bf{a}_{1} \cdot \bf{a}_{2} \times \bf{a}_{3}}{V/2\pi}\\
+%    &= 2\pi\\
+%    \sum_{i} a_{i \alpha} b_{i \beta} &= a_{i \alpha} a_{i \gamma}\times a_{i \alpha} =2\pi \delta_{\alpha \beta} \\
+%    \rm{b}_{1} &= 2\pi \frac{ \rm{a}_{2} \times \rm{a}_{3}}{V} 
+%            = \frac{2\pi}{V} \begin{pmatrix} a_{22}a_{33} - a_{23}a_{32} \\ a_{23}a_{31} - a_{21}a_{33} \\ a_{21}a_{32} - a_{22}a_{31} \end{pmatrix} \\
+%    \rm{b}_{2} &= 2\pi \frac{ \rm{a}_{3} \times \rm{a}_{1}}{V} \\
+%    \rm{b}_{3} &= 2\pi \frac{ \rm{a}_{1} \times \rm{a}_{2}}{V} 
+%\end{align}
     
-    \begin{align}
+\begin{align}
     {\rm H}^{-1} &= \frac{1}{2\pi} \begin{pmatrix} \bm{b}_{1}^{T} \\ \bm{b}_{2}^{T} \\ \bm{b}_{3}^{T} \end{pmatrix} 
         = \frac{1}{2\pi}\begin{pmatrix} 
             b_{11} & b_{12} & b_{13} \\
             b_{21} & b_{22} & b_{23} \\
             b_{31} & b_{32} & b_{33} \\
         \end{pmatrix} \\
-    \end{align}
-    \begin{align}
-        {\rm H^{-1} H} &=\frac{1}{2\pi} 
-        \begin{pmatrix} 
-            b_{11} & b_{12} & b_{13} \\
-            b_{21} & b_{22} & b_{23} \\
-            b_{31} & b_{32} & b_{33} \\
-        \end{pmatrix} 
-        \begin{pmatrix} 
-            a_{11} & a_{21} & a_{31} \\
-            a_{12} & a_{22} & a_{32} \\
-            a_{13} & a_{23} & a_{33} \\
-        \end{pmatrix} \\
-        &=\frac{1}{2\pi} 
-        \begin{pmatrix} 
-            \sum_{\alpha} b_{1 \alpha} a_{1 \alpha} & \sum_{\alpha} b_{1 \alpha} a_{2 \alpha}  & \sum_{\alpha} b_{1 \alpha} a_{3 \alpha}  \\
-            \sum_{\alpha} b_{2 \alpha} a_{1 \alpha} & \sum_{\alpha} b_{2 \alpha} a_{2 \alpha}  & \sum_{\alpha} b_{2 \alpha} a_{3 \alpha}  \\
-            \sum_{\alpha} b_{3 \alpha} a_{1 \alpha} & \sum_{\alpha} b_{3 \alpha} a_{2 \alpha}  & \sum_{\alpha} b_{3 \alpha} a_{3 \alpha}  \\
-        \end{pmatrix}\\ 
-        &= {\rm I}
-    \end{align}
-    
+\end{align}
+%\begin{align}
+%        {\rm H^{-1} H} &=\frac{1}{2\pi} 
+%        \begin{pmatrix} 
+%            b_{11} & b_{12} & b_{13} \\
+%            b_{21} & b_{22} & b_{23} \\
+%            b_{31} & b_{32} & b_{33} \\
+%        \end{pmatrix} 
+%        \begin{pmatrix} 
+%            a_{11} & a_{21} & a_{31} \\
+%            a_{12} & a_{22} & a_{32} \\
+%            a_{13} & a_{23} & a_{33} \\
+%        \end{pmatrix} \\
+%        &=\frac{1}{2\pi} 
+%        \begin{pmatrix} 
+%            \sum_{\alpha} b_{1 \alpha} a_{1 \alpha} & \sum_{\alpha} b_{1 \alpha} a_{2 \alpha}  & \sum_{\alpha} b_{1 \alpha} a_{3 \alpha}  \\
+%            \sum_{\alpha} b_{2 \alpha} a_{1 \alpha} & \sum_{\alpha} b_{2 \alpha} a_{2 \alpha}  & \sum_{\alpha} b_{2 \alpha} a_{3 \alpha}  \\
+%            \sum_{\alpha} b_{3 \alpha} a_{1 \alpha} & \sum_{\alpha} b_{3 \alpha} a_{2 \alpha}  & \sum_{\alpha} b_{3 \alpha} a_{3 \alpha}  \\
+%        \end{pmatrix}\\ 
+%        &= {\rm I}
+%\end{align}
+
+%=================================%
 \bibliography{main}
 %
 \end{document}
